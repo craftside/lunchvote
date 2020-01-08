@@ -1,6 +1,6 @@
 DELETE FROM user_roles;
 DELETE FROM users;
-DELETE FROM restaurant;
+DELETE FROM restaurants;
 DELETE FROM menu;
 DELETE FROM dishes;
 DELETE FROM votes;
@@ -16,7 +16,7 @@ INSERT INTO user_roles (role, user_id) VALUES
 ('ROLE_USER', 100001),
 ('ROLE_USER', 100002);
 
-INSERT INTO restaurant (name) VALUES
+INSERT INTO restaurants (name) VALUES
 ('KFC'),                                        -- id=100003
 ('Starbucks'),                                  -- id=100004
 ('Krispy Kreme');                               -- id=100005
