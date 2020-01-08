@@ -1,4 +1,4 @@
-package ru.craftside.lunchvote.web;
+package ru.craftside.lunchvote.web.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +12,7 @@ import ru.craftside.lunchvote.model.User;
 import ru.craftside.lunchvote.service.UserService;
 import ru.craftside.lunchvote.util.ValidationUtil;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.Collections;
 import java.util.List;
@@ -47,7 +48,7 @@ public class AdminRestController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> createWithLocation(@RequestBody User user) {
+    public ResponseEntity<User> createWithLocation(@Valid @RequestBody User user) {
         log.info("create {}", user);
         ValidationUtil.checkNew(user);
 
@@ -70,7 +71,7 @@ public class AdminRestController {
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> update(@RequestBody User user, @PathVariable int id) {
+    public ResponseEntity<User> update(@Valid @RequestBody User user, @PathVariable int id) {
         log.info("update {} with id={}", user, id);
         ValidationUtil.assureIdConsistent(user, id);
 
@@ -87,6 +88,7 @@ public class AdminRestController {
     @PatchMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void enable(@PathVariable int id, @RequestParam boolean enabled) {
+        log.info(enabled ? "enable {}" : "disable {}", id);
         userService.enable(id, enabled);
     }
 }
