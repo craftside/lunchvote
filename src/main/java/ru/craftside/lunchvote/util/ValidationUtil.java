@@ -7,6 +7,7 @@ import ru.craftside.lunchvote.util.exception.IllegalRequestDataException;
 import ru.craftside.lunchvote.util.exception.NotFoundException;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.function.Supplier;
 
 /**
  * Created at 06.01.2020
@@ -74,6 +75,10 @@ public class ValidationUtil {
             log.warn("{} at request  {}: {}", errorType, req.getRequestURL(), rootCause.toString());
         }
         return rootCause;
+    }
+
+    public static Supplier<NotFoundException> notFoundWithId(String msg, Object... args) {
+        return () -> new NotFoundException(String.format(msg.replace("{}", "%s"), args));
     }
 
 }
