@@ -1,6 +1,6 @@
 package ru.craftside.lunchvote.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Range;
@@ -25,8 +25,8 @@ public class Dish extends AbstractNamedEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "menu_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @NotNull
-    @JsonIgnore
+//    @NotNull
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Menu menu;
 
     public Dish() {
