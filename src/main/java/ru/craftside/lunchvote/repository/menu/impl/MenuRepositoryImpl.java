@@ -1,6 +1,5 @@
 package ru.craftside.lunchvote.repository.menu.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.craftside.lunchvote.model.Menu;
@@ -59,7 +58,7 @@ public class MenuRepositoryImpl implements MenuRepository {
 
     @Override
     public Menu findMenuByRestaurantIdAndId(int restaurantId, int id) {
-        return crudMenuRepository.findMenuByRestaurantIdAndId(restaurantId, id);
+        return crudMenuRepository.findMenuByRestaurantIdAndId(restaurantId, id).orElse(null);
     }
 
     @Override

@@ -9,6 +9,7 @@ import ru.craftside.lunchvote.model.Menu;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created at 08.01.2020
@@ -33,6 +34,6 @@ public interface CrudMenuRepository extends JpaRepository<Menu, Integer> {
 
     List<Menu> findAllByRestaurantIdAndDateBetween(int restaurantId, LocalDate startDate, LocalDate endDate);
 
-    Menu findMenuByRestaurantIdAndId(int restaurantId, int id);
+    Optional<Menu> findMenuByRestaurantIdAndId(int restaurantId, int id);
 
 }
