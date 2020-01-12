@@ -19,4 +19,6 @@ public interface DishRepository {
     boolean deleteDishById(int id, int restaurantId, int menuId);
 
     Optional<Dish> findDishByIdAndRestaurantIdAndMenuId(int id, int restaurantId, int menuId);
+
+    List<Dish> findAllByRestaurantIdAndMenuId(int restaurantId, int menuId);
 }

@@ -71,5 +71,10 @@ public class DishRepositoryImpl implements DishRepository {
         return crudDishRepository.findById(id);
     }
 
+    @Override
+    public List<Dish> findAllByRestaurantIdAndMenuId(int restaurantId, int menuId) {
+        return crudDishRepository.findAllByRestaurantIdAndMenuId(restaurantId, menuId);
+    }
+
 }
 

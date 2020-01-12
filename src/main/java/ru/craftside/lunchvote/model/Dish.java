@@ -1,5 +1,6 @@
 package ru.craftside.lunchvote.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -22,11 +23,12 @@ public class Dish extends AbstractNamedEntity {
     @NotNull
     private Integer price;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "menu_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-//    @NotNull
+    @NotNull
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @JsonIgnore
     private Menu menu;
 
     public Dish() {

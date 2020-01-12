@@ -7,6 +7,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import ru.craftside.lunchvote.model.Dish;
 
+import java.util.List;
+
 /**
  * Created at 09.01.2020
  *
@@ -19,5 +21,9 @@ public interface CrudDishRepository extends JpaRepository<Dish, Integer> {
     @Transactional
     @Query("DELETE FROM Dish d WHERE d.id=:id")
     int delete(@Param("id") int id);
+
+    @Query(nativeQuery = true,
+            value = "SELECT d.ID as id, d.NAME as name, d.PRICE as price, d.MENU_ID as menu FROM DISHES d INNER JOIN (SELECT m.id as menu_id, m.date as menu_date, m.restaurant_id as menu_restaurantId FROM restaurants r INNER JOIN MENU M on r.ID = M.RESTAURANT_ID WHERE r.ID=:restaurantId) as rm on d.MENU_ID=rm.menu_id WHERE rm.menu_id=:menuId")
+    List<Dish> findAllByRestaurantIdAndMenuId(@Param("restaurantId") int restaurantId, @Param("menuId") int menuId);
 
 }

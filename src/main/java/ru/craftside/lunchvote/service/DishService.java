@@ -27,6 +27,10 @@ public class DishService {
         return dishRepository.findAll();
     }
 
+    public List<Dish> getDishesByRestaurantIdAndMenuId(int restaurantId, int menuId) {
+        return dishRepository.findAllByRestaurantIdAndMenuId(restaurantId, menuId);
+    }
+
     public Dish getDishByIdAndRestaurantIdAndMenuId(int id, int restaurantId, int menuId) {
         return checkNotFoundWithId(dishRepository.findDishByIdAndRestaurantIdAndMenuId(id, restaurantId, menuId).orElse(null), id);
     }

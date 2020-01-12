@@ -39,6 +39,13 @@ public class DishRestController {
         return dishService.getAll();
     }
 
+    @GetMapping(value = REST_URL)
+    public List<Dish> getDishesByRestaurantIdAndMenuId(@PathVariable("restaurantId") int restaurantId,
+                                                       @PathVariable("menuId") int menuId) {
+        log.info("get dish list for restaurant with id={} and menu with id={}", restaurantId, menuId);
+        return dishService.getDishesByRestaurantIdAndMenuId(restaurantId, menuId);
+    }
+
     @GetMapping(value = REST_URL + "/{id}")
     public Dish get(@PathVariable("restaurantId") int restaurantId,
                     @PathVariable("menuId") int menuId,
