@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * Created at 04.01.2020
@@ -18,11 +19,15 @@ public class Menu extends AbstractBaseEntity {
     @NotNull
     private LocalDate date;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurant_id", nullable = false)
-//    @NotNull
+    @NotNull
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Restaurant restaurant;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "menu")
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private List<Dish> dishes;
 
     public Menu() {
     }
@@ -53,6 +58,10 @@ public class Menu extends AbstractBaseEntity {
 
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
+    }
+
+    public List<Dish> getDishes() {
+        return dishes;
     }
 
     @Override
