@@ -13,8 +13,8 @@ import java.time.LocalDate;
  * @author Pavel Tolstenkov
  */
 @Entity
-@Table(name = "vote", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "date"}, name = "votes_user_date_idx")})
-public class Vote extends AbstractNamedEntity {
+@Table(name = "votes", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "date"}, name = "votes_user_date_idx")})
+public class Vote extends AbstractBaseEntity {
 
     @Column(name = "date", nullable = false)
     @NotNull
@@ -26,24 +26,23 @@ public class Vote extends AbstractNamedEntity {
     @NotNull
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "restaurant_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "menu_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
-    private Restaurant restaurant;
+    private Menu menu;
 
     public Vote() {
     }
 
     public Vote(Vote vote) {
-        this(vote.getId(), vote.getName(), vote.getDate(), vote.getUser(), vote.getRestaurant());
+        this(vote.getDate(), vote.getUser(), vote.getMenu());
     }
 
-    public Vote(Integer id, String name, LocalDate date, User user, Restaurant restaurant) {
-        super(id, name);
+    public Vote(LocalDate date, User user, Menu menu) {
         this.date = date;
         this.user = user;
-        this.restaurant = restaurant;
+        this.menu = menu;
     }
 
     public LocalDate getDate() {
@@ -62,12 +61,12 @@ public class Vote extends AbstractNamedEntity {
         this.user = user;
     }
 
-    public Restaurant getRestaurant() {
-        return restaurant;
+    public Menu getMenu() {
+        return menu;
     }
 
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
+    public void setMenu(Menu menu) {
+        this.menu = menu;
     }
 
     @Override
@@ -75,8 +74,7 @@ public class Vote extends AbstractNamedEntity {
         return "Vote{" +
                 "id=" + id +
                 ", user=" + user +
-                ", restaurant=" + restaurant +
-                ", name='" + name + '\'' +
+                ", menu=" + menu +
                 ", date=" + date +
                 '}';
     }
