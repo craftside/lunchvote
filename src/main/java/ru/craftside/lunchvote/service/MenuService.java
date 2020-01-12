@@ -51,7 +51,7 @@ public class MenuService {
         return menuRepository.findAllByRestaurantId(restaurantId);
     }
 
-    public List<Menu> getAllMenuByRestaurantIdAndDate(int restaurantId, LocalDate date) {
+    public Menu getAllMenuByRestaurantIdAndDate(int restaurantId, LocalDate date) {
         return menuRepository.findAllByRestaurantIdAndDate(restaurantId, date);
     }
 

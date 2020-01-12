@@ -30,7 +30,7 @@ public interface CrudMenuRepository extends JpaRepository<Menu, Integer> {
 
     List<Menu> findAllByRestaurantId(int restaurantId);
 
-    List<Menu> findAllByRestaurantIdAndDate(int restaurantId, LocalDate date);
+    Menu findAllByRestaurantIdAndDate(int restaurantId, LocalDate date);
 
     List<Menu> findAllByRestaurantIdAndDateBetween(int restaurantId, LocalDate startDate, LocalDate endDate);
 

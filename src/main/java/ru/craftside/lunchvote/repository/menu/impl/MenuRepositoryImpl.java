@@ -47,7 +47,7 @@ public class MenuRepositoryImpl implements MenuRepository {
     }
 
     @Override
-    public List<Menu> findAllByRestaurantIdAndDate(int restaurantId, LocalDate date) {
+    public Menu findAllByRestaurantIdAndDate(int restaurantId, LocalDate date) {
         return crudMenuRepository.findAllByRestaurantIdAndDate(restaurantId, date);
     }
 

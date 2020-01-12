@@ -87,9 +87,9 @@ public class MenuRestController {
     }
 
     @GetMapping("/{restaurantId}/menu/at")
-    public List<Menu> get(@PathVariable("restaurantId") int restaurantId,
-                          @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
-        log.info("get menu list for restaurant with id={} on date={}", restaurantId, date);
+    public Menu get(@PathVariable("restaurantId") int restaurantId,
+                    @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+        log.info("get menu with dish list for restaurant with id={} on date={}", restaurantId, date);
         return menuService.getAllMenuByRestaurantIdAndDate(restaurantId, date);
     }
 
