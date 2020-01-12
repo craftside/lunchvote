@@ -21,4 +21,6 @@ public interface RestaurantRepository {
     Restaurant save(Restaurant restaurant);
 
     boolean delete(int id);
+
+    boolean existById(int restaurantId);
 }
