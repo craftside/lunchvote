@@ -89,13 +89,14 @@ public class ProfileService {
     public List<RestaurantWithVoicesDto> getVotes() {
 
         LocalDate date = LocalDate.now();
-        List<RestaurantWithVoicesDto> restaurantWithVoicesDto = new ArrayList<>();
-        List<Restaurant> restaurants = restaurantRepository.findAll();
-        for (Restaurant r : restaurants) {
-            restaurantWithVoicesDto.add(new RestaurantWithVoicesDto(r.id(), r.getName(), date,
-                    profileRepository.countByRestaurantIdAndDate(r.getId(), date)));
-        }
-        return restaurantWithVoicesDto;
+//        List<RestaurantWithVoicesDto> restaurantWithVoicesDto = new ArrayList<>();
+//        List<Restaurant> restaurants = restaurantRepository.findAll();
+//        for (Restaurant r : restaurants) {
+//            restaurantWithVoicesDto.add(new RestaurantWithVoicesDto(r.id(), r.getName(), date,
+//                    profileRepository.countByRestaurantIdAndDate(r.getId(), date)));
+//        }
+//        return restaurantWithVoicesDto;
+        return profileRepository.countByRestaurantsAndDate(date);
     }
 
     public static class VoteWithStatus {

@@ -1,8 +1,10 @@
 package ru.craftside.lunchvote.repository.profile;
 
 import ru.craftside.lunchvote.model.Vote;
+import ru.craftside.lunchvote.web.dto.RestaurantWithVoicesDto;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -21,4 +23,6 @@ public interface ProfileRepository {
     Vote save(Vote vote);
 
     int countByRestaurantIdAndDate(Integer id, LocalDate date);
+
+    List<RestaurantWithVoicesDto> countByRestaurantsAndDate(LocalDate date);
 }
