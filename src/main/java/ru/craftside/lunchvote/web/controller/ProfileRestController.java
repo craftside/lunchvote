@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.craftside.lunchvote.model.Menu;
 import ru.craftside.lunchvote.service.ProfileService;
 import ru.craftside.lunchvote.web.dto.RestaurantWithVoicesDto;
+import ru.craftside.lunchvote.web.security.SecurityUtil;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -40,22 +41,21 @@ public class ProfileRestController {
 
     @GetMapping("/myvote")
     public ResponseEntity<Menu> getVoicesByUserAndDate() {
+        int authUserId = SecurityUtil.authUserId();
 
-        int authorizedUser = 100001;
         LocalDate date = LocalDate.now();
-        log.info("voices by user: {} on date {}", authorizedUser, date);
-        return profileService.getVoicesByUserAndDate(authorizedUser, date)
+        log.info("voices by user: {} on date {}", authUserId, date);
+        return profileService.getVoicesByUserAndDate(authUserId, date)
                 .map(vote -> new ResponseEntity<>(vote.getMenu(), HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("restaurants/{id}/vote")
     public ResponseEntity<Menu> vote(@PathVariable("id") int restaurantId) {
+        int authUserId = SecurityUtil.authUserId();
+        log.info("vote for the restaurant={} by user with id={}", restaurantId, authUserId);
 
-        int authorizedUser = 100001;
-        log.info("vote for the restaurant={} by user with id={}", restaurantId, authorizedUser);
-
-        ProfileService.VoteWithStatus voteWithStatus = profileService.vote(restaurantId, authorizedUser);
+        ProfileService.VoteWithStatus voteWithStatus = profileService.vote(restaurantId, authUserId);
         return new ResponseEntity<>(voteWithStatus.getVote().getMenu(),
                 voteWithStatus.isCreated() ? HttpStatus.CREATED : (voteWithStatus.isExpired() ? HttpStatus.CONFLICT : HttpStatus.OK));
 
