@@ -45,8 +45,8 @@ INSERT INTO dishes (name, price, menu_id) VALUES
 
 INSERT INTO votes (date, user_id, menu_id) VALUES
 ('2020-01-01', 100000, 100008),               -- id=100024
-(current_date, 100000, 100007),               -- id=100025
+(current_date, 100000, 100009),               -- id=100025
 ('2020-01-01', 100001, 100008),               -- id=100026
-(current_date, 100001, 100007),               -- id=100027
+(current_date, 100001, 100010),               -- id=100027
 ('2020-01-01', 100002, 100006),               -- id=100028
 (current_date, 100002, 100010);                 -- id=100029
