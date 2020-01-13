@@ -5,6 +5,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.craftside.lunchvote.model.User;
 
+import java.util.Optional;
+
 /**
  * Created at 04.01.2020
  *
@@ -14,5 +16,5 @@ import ru.craftside.lunchvote.model.User;
 @Transactional(readOnly = true)
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-    User findByEmail(String email);
+    Optional<User> findByEmail(String email);
 }
