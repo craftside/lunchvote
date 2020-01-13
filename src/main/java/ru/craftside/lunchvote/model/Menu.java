@@ -1,6 +1,7 @@
 package ru.craftside.lunchvote.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -21,7 +22,7 @@ public class Menu extends AbstractBaseEntity {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurant_id", nullable = false)
-    @NotNull
+//    @NotNull
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Restaurant restaurant;
 
@@ -30,12 +31,6 @@ public class Menu extends AbstractBaseEntity {
     private List<Dish> dishes;
 
     public Menu() {
-    }
-
-    public Menu(Menu menu) {
-        this.id = menu.id;
-        this.date = menu.date;
-        this.restaurant = menu.restaurant;
     }
 
     public Menu(Integer id, LocalDate date, Restaurant restaurant) {
