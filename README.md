@@ -21,7 +21,7 @@ Each restaurant provides new menu each day.
 It should contain the code and README.md with API documentation and curl commands to get data for voting and vote.
 
 -------------------------
-#####Used Technologies
+##### Used Technologies
 - Java 11;
 - Spring (MVC, Security, Data Jpa);
 - Hibernate;
@@ -31,7 +31,7 @@ It should contain the code and README.md with API documentation and curl command
 - Maven;
 - Tomcat; 
 
-#####Credentials
+##### Credentials
 
 - Admin
 ```
@@ -52,8 +52,8 @@ password: password
 --user user2@yandex.ru:password
 ```
 -------------------------
-##REST API (curl commands)
-###Admin can manipulate with Users:
+## REST API (curl commands)
+### Admin can manipulate with Users:
 
 ##### Get all user:
 `curl -X GET http://localhost:8080/lunchvote/rest/admin/users -s --user admin@gmail.com:admin`
@@ -164,7 +164,7 @@ password: password
 ##### Delete menu for restaurant with id=100004:
 `curl -X DELETE http://localhost:8080/lunchvote/rest/admin/restaurants/100004/menu/100010 -s --user admin@gmail.com:admin`
 
-###Admin can manipulate with dishes
+### Admin can manipulate with dishes
 
 ##### Get dish list for all restaraunts' menu:
 `curl -X GET http://localhost:8080/lunchvote/rest/admin/restaurants/menu/dishes/ -s --user admin@gmail.com:admin`
@@ -197,7 +197,7 @@ password: password
 ##### Delete dish:
 `curl -X DELETE 'http://localhost:8080/lunchvote/rest/admin/restaurants/100004/menu/100010/dishes/100020' -s --user admin@gmail.com:admin`
 
-###Users can vote
+### Users can vote
 ##### Get vote summary:
 `curl -X GET http://localhost:8080/lunchvote/rest/profile/voices -s --user admin@gmail.com:admin`
 
