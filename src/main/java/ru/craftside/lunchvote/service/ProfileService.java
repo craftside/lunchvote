@@ -3,18 +3,16 @@ package ru.craftside.lunchvote.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.craftside.lunchvote.model.Menu;
-import ru.craftside.lunchvote.model.Restaurant;
 import ru.craftside.lunchvote.model.Vote;
+import ru.craftside.lunchvote.model.dto.RestaurantWithVoicesDto;
 import ru.craftside.lunchvote.repository.UserRepository;
 import ru.craftside.lunchvote.repository.menu.MenuRepository;
 import ru.craftside.lunchvote.repository.profile.ProfileRepository;
 import ru.craftside.lunchvote.repository.restaurant.RestaurantRepository;
 import ru.craftside.lunchvote.util.ValidationUtil;
-import ru.craftside.lunchvote.web.dto.RestaurantWithVoicesDto;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -89,13 +87,8 @@ public class ProfileService {
     public List<RestaurantWithVoicesDto> getVotes() {
 
         LocalDate date = LocalDate.now();
-        List<RestaurantWithVoicesDto> restaurantWithVoicesDto = new ArrayList<>();
-        List<Restaurant> restaurants = restaurantRepository.findAll();
-        for (Restaurant r : restaurants) {
-            restaurantWithVoicesDto.add(new RestaurantWithVoicesDto(r.id(), r.getName(), date,
-                    profileRepository.countByRestaurantIdAndDate(r.getId(), date)));
-        }
-        return restaurantWithVoicesDto;
+        return profileRepository.getVotesByDate(date);
+
     }
 
     public static class VoteWithStatus {

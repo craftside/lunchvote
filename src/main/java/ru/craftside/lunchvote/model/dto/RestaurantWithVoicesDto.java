@@ -1,4 +1,4 @@
-package ru.craftside.lunchvote.web.dto;
+package ru.craftside.lunchvote.model.dto;
 
 import java.time.LocalDate;
 

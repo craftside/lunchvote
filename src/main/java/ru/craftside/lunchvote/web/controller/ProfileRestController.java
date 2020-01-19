@@ -7,8 +7,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.craftside.lunchvote.model.Menu;
+import ru.craftside.lunchvote.model.dto.RestaurantWithVoicesDto;
 import ru.craftside.lunchvote.service.ProfileService;
-import ru.craftside.lunchvote.web.dto.RestaurantWithVoicesDto;
 import ru.craftside.lunchvote.web.security.SecurityUtil;
 
 import java.time.LocalDate;
@@ -23,7 +23,7 @@ import java.util.List;
 @RequestMapping(value = ProfileRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class ProfileRestController {
 
-    protected final Logger log = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     static final String REST_URL = "/rest/profile";
 
